@@ -1,6 +1,6 @@
 package examples.records;
 
-import examples.records.foos.HumanRecordWithBuilder;
+import examples.records.recordFoos.HumanRecordWithBuilder;
 import java.time.LocalDate;
 
 public class UsageHumanRecordWithBuilder {

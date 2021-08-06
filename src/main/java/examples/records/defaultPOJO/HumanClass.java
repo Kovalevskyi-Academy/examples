@@ -1,4 +1,4 @@
-package examples.records.defaultClass;
+package examples.records.defaultPOJO;
 
 import examples.records.Eat;
 import examples.records.Primates;
@@ -11,34 +11,39 @@ public class HumanClass implements Primates {
   private final String surname;
   private final LocalDate born;
   private final String personalVoice;
-  private final Eat favoriteEat;
-  private final boolean viripotent;
-  private final boolean crazy;
+  private final Eat[] favoriteEat;
+  private final boolean isViripotent;
+  private final boolean isCrazy;
   private final int children;
 
-  public HumanClass(String name,
+  public HumanClass(
+      String name,
       String surname,
       LocalDate born,
       String personalVoice,
-      Eat favoriteEat,
-      boolean viripotent,
-      boolean crazy,
-      int children) {
+      boolean isViripotent,
+      boolean isCrazy,
+      int children,
+      Eat... favoriteEat) {
     this.name = Objects.requireNonNull(name);
     this.surname = Objects.requireNonNull(surname);
     this.born = Objects.requireNonNull(born);
     this.personalVoice = personalVoice;
     this.favoriteEat = favoriteEat;
-    this.viripotent = viripotent;
-    this.crazy = crazy;
+    this.isViripotent = isViripotent;
+    this.isCrazy = isCrazy;
     this.children = children;
   }
 
   public HumanClass() {
-    this("DefaultName", "DefaultSurname", LocalDate.of(12, 12, 12),
-        "trololo", Eat.worms, false,
+    this("DefaultName",
+        "DefaultSurname",
+        LocalDate.of(12, 12, 12),
+        "trololo",
         false,
-        0);
+        false,
+        0,
+        Eat.worms, Eat.orange, Eat.banana);
   }
 
   public String getName() {
@@ -57,16 +62,16 @@ public class HumanClass implements Primates {
     return personalVoice;
   }
 
-  public Eat getFavoriteEat() {
+  public Eat[] getFavoriteEat() {
     return favoriteEat;
   }
 
   public boolean isViripotent() {
-    return viripotent;
+    return isViripotent;
   }
 
   public boolean isCrazy() {
-    return crazy;
+    return isCrazy;
   }
 
   public int getChildren() {
@@ -112,8 +117,8 @@ public class HumanClass implements Primates {
         + "was born: " + born.toString() + ","
         + "personal voice: " + personalVoice + ","
         + "favorite eat: " + favoriteEat + ","
-        + "is he/she viripotent: " + viripotent + ","
-        + "is he/she crazy: " + crazy + ","
+        + "is he/she isViripotent: " + isViripotent + ","
+        + "is he/she isCrazy: " + isCrazy + ","
         + "howe are many children: " + children + ","
         + "]";
   }
@@ -124,7 +129,7 @@ public class HumanClass implements Primates {
     private String surname;
     private LocalDate born;
     private String personalVoice;
-    private Eat favoriteEat;
+    private Eat[] favoriteEat;
     private boolean viripotent;
     private boolean crazy;
     private int children;
@@ -154,7 +159,7 @@ public class HumanClass implements Primates {
       return this;
     }
 
-    public Builder favoriteEat(Eat favoriteEat) {
+    public Builder favoriteEat(Eat... favoriteEat) {
       this.favoriteEat = favoriteEat;
       return this;
     }
@@ -175,8 +180,8 @@ public class HumanClass implements Primates {
     }
 
     public HumanClass build() {
-      return new HumanClass(name, surname, born, personalVoice, favoriteEat, viripotent,
-          crazy, children);
+      return new HumanClass(name, surname, born, personalVoice, viripotent,
+          crazy, children, favoriteEat);
     }
   }
 }

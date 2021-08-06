@@ -1,4 +1,4 @@
-package examples.records.foos;
+package examples.records.recordFoos;
 
 import examples.records.Eat;
 import examples.records.Primates;
@@ -12,6 +12,7 @@ public record HumanRecordWithBuilder (String name,
                                       boolean viripotent,
                                       boolean crazy,
                                       int children) implements Primates {
+
 
   public static final class Builder {
 
